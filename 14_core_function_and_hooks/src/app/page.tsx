@@ -1,4 +1,12 @@
+import { redirect } from "next/navigation";
+
 export default async function Home() {
+  const isLogin = false
+
+  if(!isLogin) {
+    redirect("/login")
+  }
+
   const timerResponse = await fetch("http://localhost:3000/api/timer" , {
     cache: "force-cache",
     next: { revalidate: 10, tags: ["timer"] } ,
